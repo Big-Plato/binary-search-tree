@@ -167,7 +167,7 @@ function Bst(arr) {
 
     storeInOrder(root, nodes);
 
-    return buildBalancedTree(nodes, 0, nodes.length - 1);
+    return buildTree(nodes, 0, nodes.length - 1);
   };
 
   return {
@@ -187,13 +187,38 @@ function Bst(arr) {
   };
 }
 
-const bst1 = new Bst([1, 5, 7, 8, 4, 3, 2]);
+function createRandomArr () {
+    const arr = [];
+
+    for (let i = 0; i < 10; i++) {
+        const randomNum = Math.floor(Math.random() * 100 + 1);
+        arr.push(randomNum);
+    }
+
+    return arr;
+}
+
+const arr1 = createRandomArr();
+console.log(arr1);
+
+const bst1 = new Bst(arr1);
+console.log(bst1);
+
+console.log(bst1.root);
 const root = bst1.root;
-bst1.insert(root, 10);
-bst1.insert(root, 6);
-bst1.deleteItem(root, 10);
-// bst1.levelOrder(bst1.root);
-bst1.insert(root, 10);
-console.log(`The depth of the node is: ${bst1.depth(root, 10)}`);
-console.log(height(10));
-prettyPrint(root);
+console.log(bst1.isBalanced(root))
+
+prettyPrint(root)
+
+bst1.insert(root, 101);
+bst1.insert(root, 121);
+bst1.insert(root, 141);
+bst1.insert(root, 171);
+bst1.insert(root, 161);
+bst1.insert(root, 111);
+
+prettyPrint(root)
+
+console.log(bst1.isBalanced(root));
+
+prettyPrint(bst1.rebalance(root));
